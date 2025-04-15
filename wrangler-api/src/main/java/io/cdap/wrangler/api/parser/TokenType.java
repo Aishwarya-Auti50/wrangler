@@ -19,7 +19,19 @@ package io.cdap.wrangler.api.parser;
 import io.cdap.wrangler.api.annotations.PublicEvolving;
 
 import java.io.Serializable;
+package io.cdap.wrangler.api.parser;
 
+/**
+ * Enum defining token types for directive arguments.
+ */
+public enum TokenType {
+    NUMBER,
+    STRING,
+    BOOLEAN,
+    COLUMN_NAME,
+    BYTE_SIZE,
+    TIME_DURATION
+}
 /**
  * The TokenType class provides the enumerated types for different types of
  * tokens that are supported by the grammar.
