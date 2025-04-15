@@ -140,7 +140,7 @@ numberRange
  ;
 
 value
- : String | Number | Column | Bool
+ : String | Number | Column | Bool | byteSizeArg | timeDurationArg
  ;
 
 ecommand
@@ -195,6 +195,13 @@ identifierList
  : Identifier (',' Identifier)*
  ;
 
+byteSizeArg
+ : BYTE_SIZE
+ ;
+
+timeDurationArg
+ : TIME_DURATION
+ ;
 
 /*
  * Following are the Lexer Rules used for tokenizing the recipe.
@@ -246,7 +253,6 @@ Pipe     : '|';
 BackSlash: '\\';
 Dollar   : '$';
 Tilde    : '~';
-
 
 Bool
  : 'true'
@@ -310,4 +316,30 @@ fragment Int
 
 fragment Digit
  : [0-9]
+ ;
+
+// === Custom Units ===
+fragment BYTE_UNIT
+ : [bB]
+ | [kK][bB]
+ | [mM][bB]
+ | [gG][bB]
+ | [tT][bB]
+ ;
+
+fragment TIME_UNIT
+ : [nN][sS]
+ | [uU][sS]
+ | [mM][sS]
+ | [sS]
+ | [mM][iI][nN]
+ | [hH]
+ ;
+
+BYTE_SIZE
+ : [0-9]+ ('.' [0-9]+)? BYTE_UNIT
+ ;
+
+TIME_DURATION
+ : [0-9]+ ('.' [0-9]+)? TIME_UNIT
  ;
